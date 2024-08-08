@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, Image, FlatList, RefreshControl } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
 import { getAllPosts, getLatestPosts } from "@/lib/appwrite";
@@ -25,6 +26,7 @@ const Home = () => {
       <FlatList
         data={posts}
         keyExtractor={(item: any) => item.$id}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <VideoCard
             title={item.title}
@@ -76,6 +78,7 @@ const Home = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 };

@@ -28,6 +28,7 @@ const SearchInput = ({ initialQuery }: { initialQuery: string }) => {
 
           if (pathname.startsWith("/search")) router.setParams({ query });
           else router.push(`/search/${query}`);
+          setQuery("");
         }}
       >
         <Image source={icons.search} className="w-5 h-5" resizeMode="contain" />

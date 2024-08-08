@@ -10,22 +10,21 @@ import {
 
 import { icons } from "@/constants";
 
-// Will change later
 const zoomIn: Animatable.CustomAnimation = {
   0: {
-    scaleX: 0.9,
+    scaleY: 0.9,
   },
   1: {
-    scaleX: 1,
+    scaleY: 1,
   },
 };
 
 const zoomOut: Animatable.CustomAnimation = {
   0: {
-    scaleX: 1,
+    scaleY: 1,
   },
   1: {
-    scaleX: 0.9,
+    scaleY: 0.9,
   },
 };
 
@@ -52,7 +51,7 @@ const TrendingItem = ({
           useNativeControls
           shouldPlay
           onPlaybackStatusUpdate={(status) => {
-            if (status.isLoaded) {
+            if (status.isLoaded && status.didJustFinish) {
               setPlay(false);
             }
           }}
@@ -100,6 +99,7 @@ const Trending = ({ posts }: { posts: any[] }) => {
       data={posts}
       horizontal
       keyExtractor={(item) => item.$id}
+      showsHorizontalScrollIndicator={false}
       renderItem={({ item }) => (
         <TrendingItem activeItem={activeItem} item={item} />
       )}
